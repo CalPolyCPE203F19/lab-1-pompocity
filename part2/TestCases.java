@@ -9,88 +9,107 @@ import java.util.Map;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 
 public class TestCases
 {
-   public static final double DELTA = 0.00001;
+    public static final double DELTA = 0.00001;
 
-   /*
-    * This test is just to get you started.
-    */
-   @Test
-   public void testGetX()
-   {
-      assertEquals(1.0, new Point(1.0, 2.0).getX(), DELTA);
-   }
+    /*
+     * This test is just to get you started.
+     */
+    @Test
+    public void testGetX()
+    {
+        assertEquals(1.0, new Point(1.0, 2.0).getX(), DELTA);
 
-   /*
-    * The tests below here are to verify the basic requirements regarding
-    * the "design" of your class.  These are to remain unchanged.
-    */
+    }
+    @Test
+    public void testGetY()
+    {
+	assertEquals(2.0, new Point(1.0, 2.0).getY(), DELTA);
+    }
+    @Test
+    public void testgetRadius(){
+	assertNotEquals(2.0, new Point(3.0, 4.0).getRadius());
+    }
+    @Test
+    public void testgetAngle(){
+	assertNotEquals(.7, new Point(3.0, 4.0).getRadius());
+    }
+    @Test
+    public void testrotate90(){
+	assertNotEquals(new Point(1.0, 1.0), new Point(3.0, 4.0).rotate90());
+    }
+    /*
+     * The tests below here are to verify the basic requirements regarding
+     * the "design" of your class.  These are to remain unchanged.
+     */
 
-   @Test
-   public void testImplSpecifics()
-      throws NoSuchMethodException
-   {
-      final List<String> expectedMethodNames = Arrays.asList(
-         "getX",
-         "getY",
-         "getRadius",
-         "getAngle",
-         "rotate90"
-         );
+    @Test
+    public void testImplSpecifics()
+            throws NoSuchMethodException
+    {
+        final List<String> expectedMethodNames = Arrays.asList(
+                "getX",
+                "getY",
+                "getRadius",
+                "getAngle",
+                "rotate90"
+        );
 
-      final List<Class> expectedMethodReturns = Arrays.asList(
-         double.class,
-         double.class,
-         double.class,
-         double.class,
-         Point.class
-         );
+        final List<Class> expectedMethodReturns = Arrays.asList(
+                double.class,
+                double.class,
+                double.class,
+                double.class,
+                Point.class
+        );
 
-      final List<Class[]> expectedMethodParameters = Arrays.asList(
-         new Class[0],
-         new Class[0],
-         new Class[0],
-         new Class[0],
-         new Class[0]
-         );
+        final List<Class[]> expectedMethodParameters = Arrays.asList(
+                new Class[0],
+                new Class[0],
+                new Class[0],
+                new Class[0],
+                new Class[0]
+        );
 
-      verifyImplSpecifics(Point.class, expectedMethodNames,
-         expectedMethodReturns, expectedMethodParameters);
-   }
+        verifyImplSpecifics(Point.class, expectedMethodNames,
+                expectedMethodReturns, expectedMethodParameters);
+    }
 
-   private static void verifyImplSpecifics(
-      final Class<?> clazz,
-      final List<String> expectedMethodNames,
-      final List<Class> expectedMethodReturns,
-      final List<Class[]> expectedMethodParameters)
-      throws NoSuchMethodException
-   {
-      assertEquals("Unexpected number of public fields",
-         0, Point.class.getFields().length);
+    private static void verifyImplSpecifics(
+            final Class<?> clazz,
+            final List<String> expectedMethodNames,
+            final List<Class> expectedMethodReturns,
+            final List<Class[]> expectedMethodParameters)
+            throws NoSuchMethodException
+    {
+        assertEquals("Unexpected number of public fields",
+                0, Point.class.getFields().length);
 
-      final List<Method> publicMethods = Arrays.stream(
-         clazz.getDeclaredMethods())
-            .filter(m -> Modifier.isPublic(m.getModifiers()))
-            .collect(Collectors.toList());
+        final List<Method> publicMethods = Arrays.stream(
+                clazz.getDeclaredMethods())
+                .filter(m -> Modifier.isPublic(m.getModifiers()))
+                .collect(Collectors.toList());
 
-      assertTrue("Unexpected number of public methods",
-         expectedMethodNames.size()+1 >= publicMethods.size());
+        assertTrue("Unexpected number of public methods",
+                expectedMethodNames.size()+1 >= publicMethods.size());
 
-      assertTrue("Invalid test configuration",
-         expectedMethodNames.size() == expectedMethodReturns.size());
-      assertTrue("Invalid test configuration",
-         expectedMethodNames.size() == expectedMethodParameters.size());
+        assertTrue("Invalid test configuration",
+                expectedMethodNames.size() == expectedMethodReturns.size());
+        assertTrue("Invalid test configuration",
+                expectedMethodNames.size() == expectedMethodParameters.size());
 
-      for (int i = 0; i < expectedMethodNames.size(); i++)
-      {
-         Method method = clazz.getDeclaredMethod(expectedMethodNames.get(i),
-            expectedMethodParameters.get(i));
-         assertEquals(expectedMethodReturns.get(i), method.getReturnType());
-      }
-   }
+        for (int i = 0; i < expectedMethodNames.size(); i++)
+        {
+            Method method = clazz.getDeclaredMethod(expectedMethodNames.get(i),
+                    expectedMethodParameters.get(i));
+            assertEquals(expectedMethodReturns.get(i), method.getReturnType());
+        }
+    }
 }
