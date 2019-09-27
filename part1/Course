@@ -1,4 +1,4 @@
-
+/
 class Course
 {
    private final String name;
