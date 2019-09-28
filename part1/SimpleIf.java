@@ -12,7 +12,7 @@ class SimpleIf
             return x;
         }
         else {
-            return 0;
+            return x;
         }
     }
 }
