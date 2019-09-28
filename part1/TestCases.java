@@ -25,7 +25,7 @@ public class TestCases
     @Test
     public void testSimpleIf2()
     {
-        assertEquals(9.0, SimpleIf.max(9.0, 3.2), DELTA);
+        assertEquals(9.0, SimpleIf.max(3.2, 9.0), DELTA);
     }
 
     @Test
