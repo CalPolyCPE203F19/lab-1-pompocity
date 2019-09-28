@@ -32,7 +32,7 @@ public class TestCases
     public void testSimpleIf3()
     {
         /* TO DO: Write one more valid test case. */
-        assertEquals(5.0, SimpleIf.max(2.0, 5.0), DELTA);
+        assertEquals(13.1, SimpleIf.max(2.0, 13.1), DELTA);
     }
 
     @Test
